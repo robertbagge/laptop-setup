@@ -39,3 +39,8 @@ virtualenv
 zlib
 zoxide
 zsh
+eza
+bat
+ripgrep
+fd
+git-delta
