@@ -1,4 +1,4 @@
-# Commands
+# HOMEBREW
 
 ```bash
 xargs brew install < homebrew/formulae
