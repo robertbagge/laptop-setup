@@ -35,8 +35,6 @@ Aloxaf/fzf-tab
 5. **Drop-in `~/.zshrc` (copy/paste this whole block):**
 
 ```zsh
-# ---------- EPIC ZSH RC ----------
-
 # 0) Homebrew path (Apple Silicon + Intel)
 if [[ -d /opt/homebrew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -127,17 +125,28 @@ bindkey -e
 
 # 10) Powerlevel10k prompt config (run: p10k configure)
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-# ---------- END EPIC ZSH RC ----------
+
+# 11) asdf-vm setup
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+autoload -Uz compinit && compinit
 ```
 
-6. **Build the plugin bundle once and start ZSH:**
+6. **Setup asdf completions:**
+```bash
+mkdir -p "${ASDF_DATA_DIR:-$HOME/.asdf}/completions"
+asdf completion zsh > "${ASDF_DATA_DIR:-$HOME/.asdf}/completions/_asdf"
+
+```
+
+7. **Build the plugin bundle once and start ZSH:**
 
 ```bash
 antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.zsh
 exec zsh
 ```
 
-7. **Run the prompt wizard** (this is where the beauty happens):
+8. **Run the prompt wizard** (this is where the beauty happens):
 
 ```bash
 p10k configure
@@ -145,7 +154,10 @@ p10k configure
 
 Pick “lean” or “rainbow”, enable icons, and latency-friendly options. You can rerun anytime.
 
-8. **(Optional) Prettier Git diffs with delta** – add to `~/.gitconfig`:
+9. **Configure asdf-vm**
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+10. **(Optional) Prettier Git diffs with delta** – add to `~/.gitconfig`:
 
 ```ini
 [core]
