@@ -9,6 +9,7 @@ ccache
 clang-format
 cmake
 cmake-docs
+coreutils
 dfu-util
 direnv
 docker-compose
